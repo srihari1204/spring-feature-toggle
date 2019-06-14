@@ -1,0 +1,32 @@
+prefix=http://localhost:9379
+
+
+S.No    URL                            RequestType      application/global.properties          Response                                                 comments
+============================================================================================================================================================================================================
+1.     /main/check                       GET                                                      working
+
+2.     /main/checkGlobalProperties       GET            reads from global.properties           GlobalProperties{threadPool=10,                          threadPool and  email reads from global.properties
+                                                                                                        email='test@gmail.com'}
+
+
+3.     /main/checkAppProperties          GET            reads from global.properties           AppProperties{error='/error/',                            Reads data from global.properties whose properties
+                                                                                                menus=[Menu{name='Home', path='/', title='Home'},           pre fixed with "app"
+                                                                                                Menu{name='Login', path='/login', title='Login'}],
+                                                                                                compiler=Compiler{timeout='5', outputFolder='/temp/'}}
+
+4.     /employees/                       GET                                                    [{"id":1,"name":"ram","sal":1000.0},                      Returns all employees list
+                                                                                                  {"id":2,"name":"raj","sal":2000.0}]
+
+5.      /employees/1                     GET                                                    {"id":1,"name":"ram","sal":1000.0}                         check for logged in user EMPLOYEE_ROLE_FEATURE is enabled or not
+                                                                                                                                                           if it enabled it returns response otherwise Log feature is not enabled.
+
+6.      /loc/                            GET          checks for below property in              India location                                             if feature.toggles.location.india=true then it return india location
+                                                        application.properties                                                                             if feature.toggles.location.india=false then it return Us Location
+                                                      feature.toggles.location.india=true                                                           based on above property we are instantiates service layer
+
+
+
+7.     /dept/                            GET          checks for below property in             [{"dId":1,"dName":"sales","loc":"ind"}]                    if feature.toggles.dept=true then this feature is enabled.
+                                                        application.properties                                                                            if feature.toggles.dept=false then return 404
+                                                        feature.toggles.dept
+                                               
